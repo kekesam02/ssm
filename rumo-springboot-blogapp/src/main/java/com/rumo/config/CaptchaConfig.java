@@ -13,7 +13,8 @@ import com.google.code.kaptcha.util.Config;
 public class CaptchaConfig {
 	
 	
-	
+	// github 老师添加的 daima
+	// 11111111111111111111
  
 	@Bean(name="captchaProducer")
 	public DefaultKaptcha getKaptchaBean(){
