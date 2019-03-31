@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rumo.mapper.BlogMapper" >
+ 
+  <resultMap id="BaseResultMap" type="com.rumo.pojo.Blog" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="is_delete" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="tag" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="kcolumn" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="music_link" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="static_link" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="videoLink" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="app_link" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="hits" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="width" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="height" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_comment" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_open" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="blog_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="course_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  
+  
+  <resultMap id="ResultMapWithBLOBs" type="com.rumo.pojo.Blog" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="is_delete" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="tag" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="kcolumn" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="music_link" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="static_link" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="videoLink" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="app_link" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="hits" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="width" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="height" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_comment" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_open" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="blog_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="course_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="description" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  
+  
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  
+  
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, create_time, update_time, is_delete, user_id, status, img, tag, kcolumn, 
+    music_link, static_link, videoLink, app_link, hits, category_id, width, height, is_comment, 
+    is_open, blog_id, course_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.rumo.pojo.BlogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from keke_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rumo.pojo.BlogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from keke_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from keke_blog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from keke_blog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rumo.pojo.BlogExample" >
+    delete from keke_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rumo.pojo.Blog" >
+    insert into keke_blog (id, name, create_time, 
+      update_time, is_delete, user_id, 
+      status, img, tag, kcolumn, 
+      music_link, static_link, videoLink, 
+      app_link, hits, category_id, 
+      width, height, is_comment, 
+      is_open, blog_id, course_id, 
+      description)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{kcolumn,jdbcType=INTEGER}, 
+      #{musicLink,jdbcType=VARCHAR}, #{staticLink,jdbcType=VARCHAR}, #{videolink,jdbcType=VARCHAR}, 
+      #{appLink,jdbcType=VARCHAR}, #{hits,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, 
+      #{width,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, #{isComment,jdbcType=INTEGER}, 
+      #{isOpen,jdbcType=VARCHAR}, #{blogId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rumo.pojo.Blog" >
+    insert into keke_blog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+      <if test="kcolumn != null" >
+        kcolumn,
+      </if>
+      <if test="musicLink != null" >
+        music_link,
+      </if>
+      <if test="staticLink != null" >
+        static_link,
+      </if>
+      <if test="videolink != null" >
+        videoLink,
+      </if>
+      <if test="appLink != null" >
+        app_link,
+      </if>
+      <if test="hits != null" >
+        hits,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="width != null" >
+        width,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="isComment != null" >
+        is_comment,
+      </if>
+      <if test="isOpen != null" >
+        is_open,
+      </if>
+      <if test="blogId != null" >
+        blog_id,
+      </if>
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="kcolumn != null" >
+        #{kcolumn,jdbcType=INTEGER},
+      </if>
+      <if test="musicLink != null" >
+        #{musicLink,jdbcType=VARCHAR},
+      </if>
+      <if test="staticLink != null" >
+        #{staticLink,jdbcType=VARCHAR},
+      </if>
+      <if test="videolink != null" >
+        #{videolink,jdbcType=VARCHAR},
+      </if>
+      <if test="appLink != null" >
+        #{appLink,jdbcType=VARCHAR},
+      </if>
+      <if test="hits != null" >
+        #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="width != null" >
+        #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="isComment != null" >
+        #{isComment,jdbcType=INTEGER},
+      </if>
+      <if test="isOpen != null" >
+        #{isOpen,jdbcType=VARCHAR},
+      </if>
+      <if test="blogId != null" >
+        #{blogId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rumo.pojo.BlogExample" resultType="java.lang.Integer" >
+    select count(*) from keke_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update keke_blog
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.img != null" >
+        img = #{record.img,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tag != null" >
+        tag = #{record.tag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcolumn != null" >
+        kcolumn = #{record.kcolumn,jdbcType=INTEGER},
+      </if>
+      <if test="record.musicLink != null" >
+        music_link = #{record.musicLink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staticLink != null" >
+        static_link = #{record.staticLink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videolink != null" >
+        videoLink = #{record.videolink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appLink != null" >
+        app_link = #{record.appLink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hits != null" >
+        hits = #{record.hits,jdbcType=INTEGER},
+      </if>
+      <if test="record.categoryId != null" >
+        category_id = #{record.categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.width != null" >
+        width = #{record.width,jdbcType=INTEGER},
+      </if>
+      <if test="record.height != null" >
+        height = #{record.height,jdbcType=INTEGER},
+      </if>
+      <if test="record.isComment != null" >
+        is_comment = #{record.isComment,jdbcType=INTEGER},
+      </if>
+      <if test="record.isOpen != null" >
+        is_open = #{record.isOpen,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blogId != null" >
+        blog_id = #{record.blogId,jdbcType=INTEGER},
+      </if>
+      <if test="record.courseId != null" >
+        course_id = #{record.courseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update keke_blog
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      img = #{record.img,jdbcType=VARCHAR},
+      tag = #{record.tag,jdbcType=VARCHAR},
+      kcolumn = #{record.kcolumn,jdbcType=INTEGER},
+      music_link = #{record.musicLink,jdbcType=VARCHAR},
+      static_link = #{record.staticLink,jdbcType=VARCHAR},
+      videoLink = #{record.videolink,jdbcType=VARCHAR},
+      app_link = #{record.appLink,jdbcType=VARCHAR},
+      hits = #{record.hits,jdbcType=INTEGER},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      width = #{record.width,jdbcType=INTEGER},
+      height = #{record.height,jdbcType=INTEGER},
+      is_comment = #{record.isComment,jdbcType=INTEGER},
+      is_open = #{record.isOpen,jdbcType=VARCHAR},
+      blog_id = #{record.blogId,jdbcType=INTEGER},
+      course_id = #{record.courseId,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update keke_blog
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      img = #{record.img,jdbcType=VARCHAR},
+      tag = #{record.tag,jdbcType=VARCHAR},
+      kcolumn = #{record.kcolumn,jdbcType=INTEGER},
+      music_link = #{record.musicLink,jdbcType=VARCHAR},
+      static_link = #{record.staticLink,jdbcType=VARCHAR},
+      videoLink = #{record.videolink,jdbcType=VARCHAR},
+      app_link = #{record.appLink,jdbcType=VARCHAR},
+      hits = #{record.hits,jdbcType=INTEGER},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      width = #{record.width,jdbcType=INTEGER},
+      height = #{record.height,jdbcType=INTEGER},
+      is_comment = #{record.isComment,jdbcType=INTEGER},
+      is_open = #{record.isOpen,jdbcType=VARCHAR},
+      blog_id = #{record.blogId,jdbcType=INTEGER},
+      course_id = #{record.courseId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rumo.pojo.Blog" >
+    update keke_blog
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="kcolumn != null" >
+        kcolumn = #{kcolumn,jdbcType=INTEGER},
+      </if>
+      <if test="musicLink != null" >
+        music_link = #{musicLink,jdbcType=VARCHAR},
+      </if>
+      <if test="staticLink != null" >
+        static_link = #{staticLink,jdbcType=VARCHAR},
+      </if>
+      <if test="videolink != null" >
+        videoLink = #{videolink,jdbcType=VARCHAR},
+      </if>
+      <if test="appLink != null" >
+        app_link = #{appLink,jdbcType=VARCHAR},
+      </if>
+      <if test="hits != null" >
+        hits = #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="width != null" >
+        width = #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="isComment != null" >
+        is_comment = #{isComment,jdbcType=INTEGER},
+      </if>
+      <if test="isOpen != null" >
+        is_open = #{isOpen,jdbcType=VARCHAR},
+      </if>
+      <if test="blogId != null" >
+        blog_id = #{blogId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.rumo.pojo.Blog" >
+    update keke_blog
+    set name = #{name,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      kcolumn = #{kcolumn,jdbcType=INTEGER},
+      music_link = #{musicLink,jdbcType=VARCHAR},
+      static_link = #{staticLink,jdbcType=VARCHAR},
+      videoLink = #{videolink,jdbcType=VARCHAR},
+      app_link = #{appLink,jdbcType=VARCHAR},
+      hits = #{hits,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      width = #{width,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      is_comment = #{isComment,jdbcType=INTEGER},
+      is_open = #{isOpen,jdbcType=VARCHAR},
+      blog_id = #{blogId,jdbcType=INTEGER},
+      course_id = #{courseId,jdbcType=INTEGER},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rumo.pojo.Blog" >
+    update keke_blog
+    set name = #{name,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      kcolumn = #{kcolumn,jdbcType=INTEGER},
+      music_link = #{musicLink,jdbcType=VARCHAR},
+      static_link = #{staticLink,jdbcType=VARCHAR},
+      videoLink = #{videolink,jdbcType=VARCHAR},
+      app_link = #{appLink,jdbcType=VARCHAR},
+      hits = #{hits,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      width = #{width,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      is_comment = #{isComment,jdbcType=INTEGER},
+      is_open = #{isOpen,jdbcType=VARCHAR},
+      blog_id = #{blogId,jdbcType=INTEGER},
+      course_id = #{courseId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,289 @@
+<html lang="zh-cn"><head>
+		<meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui" charset="UTF-8">
+		<title>加载顶部、底部</title>
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="iconfont/iconfont.css">
+		<link rel="stylesheet" href="css/compoment.css">
+		<style>
+			.opacity {
+				-webkit-animation: opacity 0.3s linear;
+				animation: opacity 0.3s linear;
+			}
+			
+			@-webkit-keyframes opacity {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@keyframes opacity {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			.dropload-up {
+				text-align: center;
+				margin-top: 100px;
+			}
+			
+			.dropload-down {
+				text-align: center;
+				margin-bottom: 100px;
+			}
+		</style>
+		
+	</head>
+
+	<body class="index" cz-shortcut-listen="true">
+		<div class="index-top">
+			<div class="index-top__header fn__flex">
+				<a href="https://hacpai.com" class="index-top__logo">
+					<i class="icon-home" style="font-size: 22px;position: relative;top: 3px;right: 1px;"></i>
+				</a>
+				<form class="fn__flex-1" action="https://hacpai.com/search">
+					<input placeholder="Search HacPai" type="text" name="key" id="algoliaSearch" value="">
+					<input type="submit" class="fn__none" value="">
+				</form>
+				<a href="https://hacpai.com/pre-post" class="fn__flex-inline">
+					<i class="icon-add"></i>
+					<span>&nbsp;发帖墨风</span>
+				</a>
+			</div>
+			<div class="index-top__nav">
+				<a href="https://hacpai.com/recent">最新</a>
+				<a href="https://hacpai.com/domain/play">领域</a>
+				<a href="https://hacpai.com/qna">问答</a>
+				<a href="https://hacpai.com/watch">
+					关注</a>
+				<a href="https://hacpai.com/city/my">
+					长沙</a>
+				<a href="https://hacpai.com/chainbook">链书</a>
+			</div>
+		</div>
+		<div class="content" style="margin-top: 68px;">
+			<ul class="lists" id="listbox">
+				
+				<!-- <li class="list__item">
+					<div class="list__meta fn__flex-inline">
+						<a rel="nofollow" class="ft__gray" href="https://hacpai.com/member/88250">
+							<img class="avatar" src="https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100" style="background-image: none; background-color: transparent;"> &nbsp;
+						</a>
+						88250 &nbsp; • &nbsp;
+						<a class="ft__gray" href="https://hacpai.com/article/1535191016145#comments" target="_self">
+							<span class="ft__level0">9</span> 回帖
+						</a>
+						&nbsp; • &nbsp;
+						<a class="ft__gray" href="https://hacpai.com/article/1535191016145" target="_self">
+							<span class="ft__level2">211</span> 浏览
+						</a>
+					</div>
+					<div class="fn__5"></div>
+					<div class="fn__flex">
+						<div class="fn__flex-1">
+							<h2 class="list__title">
+                        <a rel="bookmark" href="https://hacpai.com/article/1535191016145">
+                            GitHub 榜单
+                        </a>
+                    </h2>
+							<div class="fn__5"></div>
+							<div class="fn__flex">
+								<a class="fn__flex-1 list__content" href="https://hacpai.com/article/1535191016145">
+									黑客派[链接]加入了 GitHub 榜单，欢迎大家来参与排行。 如何参与 通过个人设置 - 账号绑定 GitHub 参与排行 如果不想参与用户榜，可以在个人设置 - 隐私中退出排行 每到偶数整 ..
+								</a>
+							</div>
+						</div>
+					</div>
+					<div>
+						<a rel="tag" class="list__tag" href="https://hacpai.com/tag/HacPai">黑客派</a>
+						&nbsp;
+						<a rel="tag" class="list__tag" href="https://hacpai.com/tag/%E6%A6%9C%E5%8D%95">榜单</a>
+						&nbsp;
+						<a rel="tag" class="list__tag" href="https://hacpai.com/tag/GitHub">GitHub</a>
+						&nbsp;
+					</div>
+				</li> -->
+				
+			</ul>
+		</div>
+		<div class="index-bottom">
+			<a href="https://hacpai.com" class="index-bottom__item
+         index-bottom__item--current
+     ">
+				<i class="icon-home"></i> 首页
+			</a>
+			<a href="https://hacpai.com/activities" class="index-bottom__item">
+				<i class="icon-send"></i> 发现
+			</a>
+			<a href="https://hacpai.com/notifications" class="index-bottom__item" id="indexBottomMsg">
+				<i class="icon-message"></i> 消息
+			</a>
+			<a href="https://hacpai.com/member/kekesam123" class="index-bottom__item">
+				<i class="icon-user"></i> 我的
+			</a>
+		</div>
+		
+		
+		<script src="js/jquery.min.js"></script>
+		<script src="js/dropload/dropload.min.js"></script>
+		<script>
+			$(function() {
+				
+				// dropload
+				$('.content').dropload({
+					scrollArea: window,//触发他的范围
+			        distance:100,//拉动距离
+			        autoLoad:true,//自动加载
+			        threshold : 150,
+					domUp: {
+						domClass: 'dropload-up',
+						domRefresh: '<div class="dropload-refresh">↓下拉刷新-自定义内容</div>',
+						domUpdate: '<div class="dropload-update">↑释放更新-自定义内容</div>',
+						domLoad: '<div class="dropload-load"><span class="loading"></span>加载中-自定义内容...</div>'
+					},
+					domDown: {
+						domClass: 'dropload-down',
+						domRefresh: '<div class="dropload-refresh">↑上拉加载更多-自定义内容</div>',
+						domLoad: '<div class="dropload-load"><span class="loading"></span>加载中-自定义内容...</div>',
+						domNoData: '<div class="dropload-noData">暂无数据-谢谢惠顾</div>'
+					},
+					
+					loadUpFn: function(me) {
+						// 锁定 目的是不进入对应回调函数而已，拉动提示效果还是存在。
+						/*me.lock();
+						$.ajax({
+							type: 'GET',
+							url: 'json/update.json',
+							dataType: 'json',
+							success: function(data) {
+								var result = '';
+								for(var i = 0; i < data.lists.length; i++) {
+									result += '<a class="item opacity" href="' + data.lists[i].link + '">' +
+										'<img src="' + data.lists[i].pic + '" alt="">' +
+										'<h3>' + data.lists[i].title + '</h3>' +
+										'<span class="date">' + data.lists[i].date + '</span>' +
+										'</a>';
+								}
+								// 为了测试，延迟1秒加载
+								setTimeout(function() {
+									$('.lists').html(result);
+									// 每次数据加载完，必须重置
+									me.resetload();
+									// 重置索引值，重新拼接more.json数据
+									counter = 0;
+									// 解锁
+									me.unlock();
+									me.noData(false);
+								}, 1000);
+							},
+							error: function(xhr, type) {
+								alert('Ajax error!');
+								// 即使加载出错，也得重置
+								me.resetload();
+							}
+						});*/
+					},
+					loadDownFn: function(me) {
+						me.lock();
+						if(this.timer)clearTimeout(this.timer);
+						this.timer = setTimeout(function(){
+							mkBlog.pageNo++;
+							mkBlog.loadData(function(flag){
+								// 每次数据加载完，必须重置
+								me.resetload();
+								// 解锁
+								me.unlock();
+								// 无数据
+								//me.noData();
+							}); 
+						},300);
+						
+					}
+				});
+			});
+			
+			var mkBlog = {
+				pageNo:0,
+				pageSize:10,
+				loadData:function(callback){
+					var promise =$.get("http://localhost:8080/blogs/"+mkBlog.pageNo+"/"+mkBlog.pageSize);
+					promise.done(function(json){
+						if(json){
+							var blogs = json.data.list;
+							if(!blogs){
+								//console.log("没有找到数据....");
+								return;
+							}
+							var html = "";
+							for(var i=0;i<blogs.length;i++){
+								/* html +="<li class='list__item'>"+
+								"					<div class='list__meta fn__flex-inline'>"+
+								"						<a rel='nofollow' class='ft__gray' href='https://hacpai.com/member/Eddie'>"+
+								"							<img class='avatar' src='https://img.hacpai.com/avatar/1409838173971_1474260929164.gif?imageView2/1/w/80/h/80/interlace/0/q/100' style='background-image: none; background-color: transparent;'> &nbsp;"+
+								"						</a>"+
+								"						Eddie &nbsp; • &nbsp;"+
+								"						<a class='ft__gray' href='https://hacpai.com/article/1519358661759#comments' target='_self'>"+
+								"							<span class='ft__level3'>33</span> 回帖"+
+								"						</a>"+
+								"						&nbsp; • &nbsp;"+
+								"						<a class='ft__gray' href='https://hacpai.com/article/1519358661759' target='_self'>"+
+								"							<span class='ft__level2'>244</span> 浏览"+
+								"						</a>"+
+								"					</div>"+
+								"					<div class='fn__5'></div>"+
+								"					<div class='fn__flex'>"+
+								"						<div class='fn__flex-1'>"+
+								"							<h2 class='list__title'>"+
+								"                        <a rel='bookmark' href='https://hacpai.com/article/1519358661759'>"+blogs[i].name+"</a>"+
+								"                    </h2>"+
+								"							<div class='fn__5'></div>"+
+								"							<div class='fn__flex'>"+
+								"								<a class='fn__flex-1 list__content' href='https://hacpai.com/article/1519358661759'>"+
+								"									[图片] 这个屎黄色的背景颜色能不能自定义啊？感觉好简陋也很奇怪。。。 @[链接] @[链接]"+
+								"								</a>"+
+								"							</div>"+
+								"						</div>"+
+								"						<a href='https://hacpai.com/article/1519358661759' class='list__img'>"+
+								"							<img src='http://www.itbooking.net/"+blogs[i].img+"' onerror='imgError(this)'  width='105' height='95'>"+
+								"						</a>"+
+								"					</div>"+
+								"					<div>"+
+								"						<a rel='tag' class='list__tag' href='https://hacpai.com/tag/sym'>Sym</a>"+
+								"						&nbsp;"+
+								"						<a rel='tag' class='list__tag' href='https://hacpai.com/tag/%E5%BB%BA%E8%AE%AE'>建议</a>"+
+								"						&nbsp;"+
+								"						<a rel='tag' class='list__tag' href='https://hacpai.com/tag/%E4%B8%BB%E9%A1%B5'>主页</a>"+
+								"						&nbsp;"+
+								"					</div>"+
+								"				</li>"; */
+								
+								//esc 下面那个键,英文输入法的情况下``
+								html = `<a href="https://hacpai.com/member/kekesam123" class="index-bottom__item">
+									<i class="icon-user"></i>${blogs.name}
+									</a>`;
+							}
+						
+							$("#listbox").append(html);
+							callback && callback(true);
+						}
+					});
+				}
+					
+			}
+			
+			
+			//初始数据
+			mkBlog.loadData(0,mkBlog.pageSize);
+			
+			function imgError(obj){
+				obj.src = "http://www.itbooking.net/resources/images/noimage.gif";
+			};
+		</script>
+	
+</body></html>

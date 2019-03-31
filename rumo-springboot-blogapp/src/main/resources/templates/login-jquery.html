@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<!-- Start of Baidu Transcode -->
+		<meta http-equiv="Cache-Control" content="no-siteapp">
+		<meta http-equiv="Cache-Control" content="no-transform">
+		<meta name="applicable-device" content="pc,mobile">
+		<meta name="MobileOptimized" content="width">
+		<meta name="HandheldFriendly" content="true">
+		<meta name="mobile-agent" content="format=html5;url=https://www.jianshu.com/sign_in">
+		<!-- End of Baidu Transcode -->
+		<meta name="description" content="加入简书，开启你的创作之路，来这里接收世界的赞赏。">
+		<meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+		<meta property="wb:webmaster" content="294ec9de89e7fadb">
+		<meta property="qc:admins" content="104102651453316562112116375">
+		<meta property="qc:admins" content="11635613706305617">
+		<meta property="qc:admins" content="1163561616621163056375">
+		<meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+		<meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+		<meta http-equiv="mobile-agent" content="format=html5; url=https://www.jianshu.com/sign_in">
+		<!-- Apple -->
+		<meta name="apple-mobile-web-app-title" content="简书">
+		<title>登录 - 简书</title>
+		<meta name="csrf-param" content="authenticity_token">
+		<meta name="csrf-token" content="9R4ZK8o2z9OhqmA/glXtQNxJNNkfHKrvxa+DmJFEChihKmXV0Eu7CBzRC9Na48+9SWfHUc2+TmM4MjqkKt0qMA==">
+		<link rel="stylesheet" media="all" href="css/web-2b26d78a4d3c053b7b1c.css">
+		<link rel="stylesheet" media="all" href="css/entry-1a3678e27fe77011521b.css">
+
+	</head>
+
+	<body class="no-padding reader-black-font" lang="zh-CN">
+		<div class="sign">
+			<div class="logo">
+				<a href="/"><img src="//cdn2.jianshu.io/assets/web/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+			</div>
+			<div class="main" id="appbox">
+
+				<h4 class="title">
+				  <div class="normal-title">
+				    <a class="active" href="/sign_in">{{title}}</a>
+				    <b>·</b>
+				    <a id="js-sign-up-btn" class="" href="/sign_up">注册</a>
+				  </div>
+				</h4>
+				<div class="js-sign-in-container">
+					<div><span v-text="tipMessage"></span></div>	
+					<form id="new_session" action="" accept-charset="UTF-8" method="post">
+						<!-- 正常登录登录名输入框 -->
+						<div class="input-prepend restyle js-normal">
+							<input placeholder="手机号或邮箱" type="text" v-model="account">
+							<i class="iconfont ic-user"></i>
+						</div>
+
+						<!-- 海外登录登录名输入框 -->
+
+						<div class="input-prepend">
+							<input placeholder="密码" type="password" id="password" v-model="password">
+							<i class="iconfont ic-password"></i>
+						</div>
+						<div class="input-prepend" id="imgcodebox" style="display: none">
+							<input placeholder="验证码" type="text" id="code" v-model="code">
+							<i class="iconfont ic-password"></i>
+							<img src="http://localhost:8080/code" id="codeimg" onclick="loadCode(this)">	
+							<a href="javascript:void(0);" onclick="$(this).prev().trigger('click')">点我改变</a>
+						</div>
+						<div class="remember-btn">
+							<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+						</div>
+						<div class="forget-btn">
+							<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="/users/password/mobile_reset">用手机号重置密码</a>
+								</li>
+								<li>
+									<a href="/users/password/email_reset">用邮箱重置密码</a>
+								</li>
+								<li>
+									<a target="_blank" href="/p/9058d0b8711d">无法用海外手机号登录</a>
+								</li>
+								<li>
+									<a target="_blank" href="/p/498a9fa7da08">无法用 Google 帐号登录</a>
+								</li>
+							</ul>
+						</div>
+						
+						<!-- button submit reset都一个默认行为，提交form表单， -->
+						<button class="sign-in-button" v-on:click.prevent="login" ype="button">
+					      <span id="sign-in-loading"></span>
+					      登录
+					    </button>
+					</form>
+					<!-- 更多登录方式 -->
+					<div class="more-sign">
+						<h6>社交帐号登录</h6>
+						<ul>
+							<li id="weibo-link-wrap" class="">
+								<a class="weibo" id="weibo-link">
+									<i class="iconfont ic-weibo"></i>
+								</a>
+							</li>
+							<li>
+								<a id="weixin" class="weixin" target="_blank" href="/users/auth/wechat"><i class="iconfont ic-wechat"></i></a>
+							</li>
+							<li>
+								<a id="qq" class="qq" target="_blank" href="/users/auth/qq_connect"><i class="iconfont ic-qq_connect"></i></a>
+							</li>
+							<li class="js-more-method" id="more">
+								<a href="javascript:void(0);"><i class="iconfont ic-more"></i></a>
+							</li>
+							<li class="js-hide-method hide">
+								<a class="douban" target="_blank" href="/users/auth/douban"><i class="iconfont ic-douban"></i></a>
+							</li>
+						</ul>
+						<div class="weibo-geetest-captcha"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script src="js/vue-resource.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		
+		<script>
+			
+			//盐
+			var salt = "rumo154545123";
+			function inputPassToFormPass(inputPass) {
+				//混淆视听 slat
+				var str = ""+salt.charAt(0)+salt.charAt(2) + inputPass +salt.charAt(5) + salt.charAt(4);
+				//加密一次
+				return md5(str);
+			}
+			
+			function loadCode(obj){
+				obj.src = "http://localhost:8080/code?"+Math.random();
+			}
+			
+			//vuejs 可以用jquery的ajax A可以 B不可以
+			//1:验证js文件的路径是否正确。大对象vue.。在保存，修改 不要去验证，
+			var vue = new Vue({
+				el:"#appbox",
+				data:{title:"登陆",account:"15074816437",password:"123456",tipMessage:"",code:"",errorCount:0},
+				methods:{
+					login (){
+						//获取账号和密码
+						var account = this.$data.account;
+						var password = inputPassToFormPass(this.$data.password);
+						//验证码
+						var code = this.$data.code;
+						//错误计数器
+						var errorCount = this.$data.errorCount;
+						//传递给后端的参数
+						var params = {account,password,code,errorCount};
+						console.log(this.$data.errorCount);
+						//执行异步ajax处理，
+						this.$http.post("http://localhost:8080/logined",params, {emulateJSON: true}).then(response=>{
+							//如果你后端返回一个单纯的字符串，8中封装数据类型，那么只有bodyText ,body无值
+							//如果你后端返回是一个对象或者集合,map,那么bodyText就是字符的json,body一个真是的对象类型。
+							var data = response.body;
+							//处理成功，获取返回值
+							//如果是success,那么就进入到你想进入地址，一般来说都是index
+							if(data.status==200){
+								window.location.href = "http://localhost:8080/index";
+							}else{
+								//如果出错那么，账号密码输入有误
+								//this.$data.password = "";
+								this.$data.tipMessage = data.msg;
+								
+								//判断账号密码有误，进入此处
+								if(data.status==401){
+									//错误计数器
+									this.$data.errorCount = ++this.$data.errorCount;
+									$("#password").val("").focus();
+								}
+								
+								if(data.status==402){//验证有误
+									//$("#code").select();
+									//激活，清空获取焦点，
+									$("#imgcodebox").show();
+									$("#codeimg").trigger("click");
+									$("#code").val("").focus();
+								}
+							} 
+						},function(err){
+							//服务器有误，才会进入此处
+							console.log(err);	
+						});
+					
+					}
+				}
+			}); 
+		</script>
+		
+
+	</body>
+
+</html>

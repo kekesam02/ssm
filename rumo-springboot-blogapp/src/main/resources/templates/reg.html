@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<!-- Start of Baidu Transcode -->
+		<meta http-equiv="Cache-Control" content="no-siteapp">
+		<meta http-equiv="Cache-Control" content="no-transform">
+		<meta name="applicable-device" content="pc,mobile">
+		<meta name="MobileOptimized" content="width">
+		<meta name="HandheldFriendly" content="true">
+		<meta name="mobile-agent" content="format=html5;url=https://www.jianshu.com/sign_in">
+		<!-- End of Baidu Transcode -->
+		<meta name="description" content="加入简书，开启你的创作之路，来这里接收世界的赞赏。">
+		<meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+		<meta property="wb:webmaster" content="294ec9de89e7fadb">
+		<meta property="qc:admins" content="104102651453316562112116375">
+		<meta property="qc:admins" content="11635613706305617">
+		<meta property="qc:admins" content="1163561616621163056375">
+		<meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+		<meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+		<meta http-equiv="mobile-agent" content="format=html5; url=https://www.jianshu.com/sign_in">
+		<!-- Apple -->
+		<meta name="apple-mobile-web-app-title" content="简书">
+		<title>登录 - 濡沫学院</title>
+		<meta name="csrf-param" content="authenticity_token">
+		<meta name="csrf-token" content="9R4ZK8o2z9OhqmA/glXtQNxJNNkfHKrvxa+DmJFEChihKmXV0Eu7CBzRC9Na48+9SWfHUc2+TmM4MjqkKt0qMA==">
+		<link rel="stylesheet" media="all" href="css/web-2b26d78a4d3c053b7b1c.css">
+		<link rel="stylesheet" media="all" href="css/entry-1a3678e27fe77011521b.css">
+	<style>
+		 	.fade-enter-active, .fade-leave-active {
+			  transition: opacity 1s;
+			}
+			.fade-enter, .fade-leave-to  {
+			  opacity: 0;
+			}
+		</style>
+	</head>
+
+	<body class="no-padding reader-black-font" lang="zh-CN">
+		<div class="sign">
+			
+			<div class="main">
+		
+				<h4 class="title">
+		  <div class="normal-title">
+		    <a class="" href="/login">登录</a>
+		    <b>·</b>
+		    <a id="js-sign-up-btn" class="active" href="reg">注册</a>
+		  </div>
+		</h4>
+				<div class="js-sign-up-container" id="regbox">
+				
+					<div  style="height: 20px;margin-bottom:5px;color:red;">
+					 <transition name="fade" mode="in-out">
+						<div v-show="show"><span v-text="tipMessage"></span></div>	
+					  </transition>
+					</div> 
+					<form class="new_user" id="new_user" action="/retet"  accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="9xLFtykFJ/oCChD0Ha3W2lxLypISwuM7307vGtihnSijJrlJM3hTIb9xexjFG/QnyWU5GsBgB7ci01YmYzi9AA==">
+						<div class="input-prepend restyle">
+							<input placeholder="你的昵称" maxlength="20" type="text" v-model="username" placeholder="昵称">
+							<i class="iconfont ic-user"></i>
+						</div>
+						<div class="input-prepend restyle no-radius js-normal">
+							<input placeholder="手机号" maxlength="11" type="tel" v-model="phone" placeholder="手机号码">
+							<i class="iconfont ic-phonenumber"></i>
+						</div>
+						<div class="input-prepend restyle no-radius js-normal">
+							<input placeholder="邮箱" maxlength="80" type="email" v-model="email" placeholder="邮箱">
+							<i class="iconfont ic-phonenumber"></i>
+						</div>
+						<div class="input-prepend restyle no-radius security-up-code js-security-number">
+							<input type="text" name="sms_code" maxlength="123456" v-model="code" placeholder="邮箱验证码">
+							<i class="iconfont ic-verify"></i>
+							<a tabindex="-1" class="btn-up-resend js-send-code-button disable" href="javascript:void(0);" id="send_code">发送验证码</a>
+							<div>
+								<div class="captcha"><input name="captcha[validation][challenge]" autocomplete="off" type="hidden" value="849c54cb8957b886f3d1354bb15ed091"> <input name="captcha[validation][gt]" autocomplete="off" type="hidden" value="ec47641997d5292180681a247db3c92e"> <input name="captcha[validation][validate]" autocomplete="off" type="hidden" value=""> <input name="captcha[validation][seccode]" autocomplete="off" type="hidden" value=""> <input name="captcha[id]" autocomplete="off" type="hidden" value="">
+									<div id="geetest-area" class="geetest"></div>
+								</div>
+							</div>
+						</div>
+						<div class="input-prepend">
+							<input placeholder="设置密码" type="password" maxlength="16" v-model="password">
+							<i class="iconfont ic-password"></i>
+						</div>
+						<input type="submit" name="commit" value="注册" class="sign-up-button" v-on:click.prevent="reged">
+						<!-- <input type="submit" name="commit" value="注册" class="sign-up-button" @click.prevent="reged"> -->
+						<p class="sign-up-msg">点击 “注册” 即表示您同意并愿意遵守简书<br>
+							<a target="_blank" href="http://www.jianshu.com/p/c44d171298ce">用户协议</a> 和
+							<a target="_blank" href="http://www.jianshu.com/p/2ov8x3">隐私政策</a> 。</p>
+					</form>
+					<!-- 更多注册方式 -->
+					<div class="more-sign">
+						<h6>社交帐号直接注册</h6>
+						<ul>
+							<li>
+								<a id="weixin" class="weixin" target="_blank" href="/users/auth/wechat"><i class="iconfont ic-wechat"></i></a>
+							</li>
+							<li>
+								<a id="qq" class="qq" target="_blank" href="/users/auth/qq_connect"><i class="iconfont ic-qq_connect"></i></a>
+							</li>
+						</ul>
+		
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<script src="js/vue.js"></script>
+		<script src="js/vue-resource.js"></script>
+		<script>
+			var vue = new Vue({
+				el:"#regbox",
+				data:{username:"",email:"",phone:"",password:"",code:"",show:true,tipMessage:""},
+				methods:{
+					reged :function(){
+						var params = this.$data;
+						this.$http.post("http://localhost:8080/reged",params, {emulateJSON: true}).then(function(response){
+							console.log(response);
+							if(response.data.status==200){
+								alert("注册成功!");
+								window.location.href = "http://localhost:8080/login";
+							}else{
+								this.$data.tipMessage = response.data.msg;
+							}
+						}).catch(function(err){
+							console.log(err);
+						})
+					}
+				}
+			})
+		
+		</script>	
+		
+		
+		
+		
+		
+	</body>
+
+</html>

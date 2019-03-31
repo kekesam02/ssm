@@ -1,0 +1,231 @@
+<html lang="zh-cn"><head>
+		<meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui" charset="UTF-8">
+		<title>加载顶部、底部</title>
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="iconfont/iconfont.css">
+		<link rel="stylesheet" href="css/compoment.css">
+		<style>
+			.opacity {
+				-webkit-animation: opacity 0.3s linear;
+				animation: opacity 0.3s linear;
+			}
+			
+			@-webkit-keyframes opacity {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@keyframes opacity {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			.dropload-up {
+				text-align: center;
+				margin-top: 100px;
+			}
+			
+			.dropload-down {
+				text-align: center;
+				margin-bottom: 100px;
+			}
+		</style>
+		
+	</head>
+
+	<body class="index" cz-shortcut-listen="true">
+		<div class="index-top">
+			<div class="index-top__header fn__flex">
+				<a href="https://hacpai.com" class="index-top__logo">
+					<i class="icon-home" style="font-size: 22px;position: relative;top: 3px;right: 1px;"></i>
+				</a>
+				<form class="fn__flex-1" action="https://hacpai.com/search">
+					<input placeholder="Search HacPai" type="text" name="key" id="algoliaSearch" value="">
+					<input type="submit" class="fn__none" value="">
+				</form>
+				<a href="https://hacpai.com/pre-post" class="fn__flex-inline">
+					<i class="icon-add"></i>
+					<span>&nbsp;发帖${session_user.username}</span>
+				</a>
+			</div>
+			<div class="index-top__nav">
+				<a href="https://hacpai.com/recent">最新</a>
+				<a href="https://hacpai.com/domain/play">领域</a>
+				<a href="https://hacpai.com/qna">问答</a>
+				<a href="https://hacpai.com/watch">
+					关注</a>
+				<a href="https://hacpai.com/city/my">
+					长沙</a>
+				<a href="https://hacpai.com/chainbook">链书</a>
+			</div>
+		</div>
+		<div class="content" style="margin-top: 68px;">
+			<ul class="lists" id="listbox">
+				
+				 <li class="list__item" v-for="(blog,index) in blogs">
+					<div class="list__meta fn__flex-inline">
+						<a rel="nofollow" class="ft__gray" href="https://hacpai.com/member/88250">
+							<img class="avatar" src="https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100" style="background-image: none; background-color: transparent;"> &nbsp;
+						</a>
+						88250 &nbsp; • &nbsp;
+						<a class="ft__gray" href="https://hacpai.com/article/1535191016145#comments" target="_self">
+							<span class="ft__level0">9</span> 回帖
+						</a>
+						&nbsp; • &nbsp;
+						<a class="ft__gray" href="https://hacpai.com/article/1535191016145" target="_self">
+							<span class="ft__level2">211</span> 浏览
+						</a>
+					</div>
+					<div class="fn__5"></div>
+					<div class="fn__flex">
+						<div class="fn__flex-1">
+							<h2 class="list__title">
+                        <a rel="bookmark" href="https://hacpai.com/article/1535191016145">{{blog.name}}
+                        </a>
+                    </h2>
+							<div class="fn__5"></div>
+							<div class="fn__flex">
+								<a class="fn__flex-1 list__content" href="https://hacpai.com/article/1535191016145">
+									{{blog.name}}
+								</a>
+							</div>
+						</div>
+						<a href='https://hacpai.com/article/1519358661759' class='list__img'>
+							<!-- <img v-bind:src="blog.img"  onerror='imgError(this)'  width='105' height='95'> -->
+							<img :src="'http://www.itbooking.net/'+blog.img"  onerror='imgError(this)'  width='105' height='95'>
+						</a>
+					</div>
+					<div>
+						<a rel="tag" class="list__tag" href="https://hacpai.com/tag/HacPai">黑客派</a>
+						&nbsp;
+						<a rel="tag" class="list__tag" href="https://hacpai.com/tag/%E6%A6%9C%E5%8D%95">榜单</a>
+						&nbsp;
+						<a rel="tag" class="list__tag" href="https://hacpai.com/tag/GitHub">GitHub</a>
+						&nbsp;
+					</div>
+				</li>
+				
+			</ul>
+		</div>
+		<div class="index-bottom">
+			<a href="https://hacpai.com" class="index-bottom__item
+         index-bottom__item--current
+     ">
+				<i class="icon-home"></i> 首页
+			</a>
+			<a href="https://hacpai.com/activities" class="index-bottom__item">
+				<i class="icon-send"></i> 发现
+			</a>
+			<a href="https://hacpai.com/notifications" class="index-bottom__item" id="indexBottomMsg">
+				<i class="icon-message"></i> 消息
+			</a>
+			<a href="https://hacpai.com/member/kekesam123" class="index-bottom__item">
+				<i class="icon-user"></i> 我的
+			</a>
+		</div>
+		
+		
+		<script src="js/jquery.min.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-resource.js"></script>
+		<script src="js/dropload/dropload.min.js"></script>
+		<script>
+		
+			var app = new Vue({
+				el:"#listbox",
+				data:{blogs:[],pageNo:1,pageSize:10},
+				//初始加载的函数
+				created:function(){
+					
+					//定义 vuejs的对象
+					var $vueobj = this;
+					//初始化jquery插件滚动加载数据插件dropload.js
+					$('.content').dropload({
+						scrollArea: window,//触发他的范围
+				        distance:100,//拉动距离
+				        autoLoad:true,//自动加载
+				        threshold : 150,
+						domUp: {
+							domClass: 'dropload-up',
+							domRefresh: '<div class="dropload-refresh">↓下拉刷新-自定义内容</div>',
+							domUpdate: '<div class="dropload-update">↑释放更新-自定义内容</div>',
+							domLoad: '<div class="dropload-load"><span class="loading"></span>加载中-自定义内容...</div>'
+						},
+						domDown: {
+							domClass: 'dropload-down',
+							domRefresh: '<div class="dropload-refresh">↑上拉加载更多-自定义内容</div>',
+							domLoad: '<div class="dropload-load"><span class="loading"></span>数据正在来的路上...</div>',
+							domNoData: '<div class="dropload-noData">真棒！加载完毕了</div>'
+						},
+						
+						loadUpFn: function(me) {
+							
+						},
+						//滚动分页
+						loadDownFn: function(me) { //大门
+							me.lock();//lock是dropload的锁，代表不会执行loadDownFn方法
+							if(this.timer)clearTimeout(this.timer);
+							 this.timer = setTimeout(function(){
+								 //分页
+								$vueobj.$data.pageNo++;
+								//加载后台的数据
+								$vueobj.loadData(function(pagedata){
+									// 每次数据加载完，必须重置
+									me.resetload();
+									// 解锁
+									me.unlock();
+									//边界判断
+									if(pagedata.pages == $vueobj.$data.pageNo){//关门
+										//显示加载完毕数据的提示
+										me.noData(true);
+										//重新加载
+										me.resetload();
+										//锁住
+										me.lock();//代表不会执行loadDownFn方法
+									}
+								}); 
+							},300); 
+						}
+					});
+					//这里的目的是，在vuejs加载完毕以后，初始化第一次页面上的数据.
+					this.loadData();
+				},
+				methods:{
+					loadData(callbackFn) {
+						//获取分页的数据
+						var pageNo = this.$data.pageNo;
+						var pageSize = this.$data.pageSize;
+						//执行异步请求
+						var promise =$.get("http://localhost:8080/blogs/"+pageNo+"/"+pageSize);
+						var $this = this;
+						promise.done(function(json){
+							if(json){
+								var blogs = json.data.list;
+								if( blogs && blogs.length > 0){
+									//数据的返回
+									$this.$data.blogs = $this.$data.blogs.concat(blogs) ;
+									//触发回调函数，为什么要加判断，是因为，可能用户不传递函数。会报异常
+									callbackFn && callbackFn(json.data);// 等价于if(callbackFn)callbackFn(true);
+								}
+							}
+						});
+						
+					}
+				}
+			});
+			
+			
+			function imgError(obj){
+				obj.src = "http://www.itbooking.net/resources/images/noimage.gif";
+			};
+		</script>
+	
+</body></html>

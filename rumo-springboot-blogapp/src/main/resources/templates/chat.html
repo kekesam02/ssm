@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/chat.css" />
+		<style>
+			html,
+			body {
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+				overflow: hidden;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+			}
+		</style>
+	</head>
+
+	<body contextmenu="return false;">
+
+		<div id="msg-outter" class="mui-content">
+			<div id='msg'>
+				
+				
+				
+			</div>
+		</div>
+		
+		<footer>
+			<div class="footer-center">
+				<textarea id='message' type="text" class='input-text'></textarea>
+			</div>
+			<label for="" class="footer-right">
+				<button type="button" class="mui-btn mui-btn-gray" id="send" onclick="RumoChat.chat()">发送</button>
+			</label>
+		</footer>
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			var RumoChat = {
+				socket :null,
+				index : 0,
+				init:function(){
+					
+					if(window.WebSocket){
+						RumoChat.socket = new WebSocket("ws://120.79.138.0:8088/ws");
+						console.log(RumoChat.socket);
+						
+						RumoChat.socket.onopen = function(){
+							console.log("ws 建立连接成功!!!!");
+						};
+						
+						
+						RumoChat.socket.onclose = function(){
+							console.log("ws 连接关闭");
+						};
+						
+						RumoChat.socket.onerror = function(e){
+							console.log("ws 出现错误!!!!");
+						};
+						
+						RumoChat.socket.onmessage = function(e){
+							var arrow = RumoChat.index %2==0?"left":"right";
+							var arrowc = RumoChat.index %2==0?"me_lists":"friend_lists";
+							var data = e.data;
+							var html = '<div class="'+arrowc+'">'+
+							'	<div class="header_img">'+
+							'		<img src="img/scanscan.png" width="40px" height="40px" />'+
+							'	</div>'+
+							'	<div class="msg-wrapper '+arrow+'">'+
+							'		<p class="msg-left-white">'+data+'</p>'+
+							'	</div>'+
+							'</div>';
+							document.getElementById("msg").innerHTML += html;
+							
+						};
+						
+					}else{
+						alert("你当前浏览器不支持WS协议");
+					}
+				},
+				chat:function(){
+					RumoChat.index++;
+					var message = document.getElementById("message").value;
+					RumoChat.socket.send(message);
+				}
+			}
+			
+			
+			RumoChat.init();
+		</script>
+	</body>
+
+</html>
